@@ -1,5 +1,8 @@
-package dev.ocaina.usercontroller;
+package dev.ocaina.usercontroller.Users;
+import dev.ocaina.usercontroller.Tasks.TaskModel;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "tb_users")
@@ -7,9 +10,17 @@ public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
     private String email;
+
     private int age;
+
+    // varias pessoas uma task
+    @ManyToOne
+    @JoinColumn(name= "tasks_id")
+    private TaskModel tasks;
 
     public UserModel() {}
     public UserModel(String name, String email, int age) {
