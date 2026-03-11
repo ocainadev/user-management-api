@@ -18,8 +18,10 @@ public class TaskModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "difficult")
     private int difficult;
 
     // Uma Task para varias pessoas

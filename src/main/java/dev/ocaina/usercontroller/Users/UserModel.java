@@ -15,11 +15,13 @@ public class UserModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name")
     private String name;
 
     @Column(unique = true)
     private String email;
 
+    @Column(name = "age")
     private int age;
 
     // varias pessoas uma task
