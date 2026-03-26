@@ -11,8 +11,8 @@
     <groupId>dev.ocaina</groupId>
     <artifactId>UserManagement</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>UserController</name>
-    <description>UserController</description>
+    <name>UserManagement</name>
+    <description>UserManagement</description>
     <url/>
     <licenses>
         <license/>
@@ -27,14 +27,13 @@
         <url/>
     </scm>
     <properties>
-        <java.version>25</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webmvc</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webmvc-test</artifactId>
@@ -48,6 +47,25 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-h2console</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-flyway</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-flyway-test</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
