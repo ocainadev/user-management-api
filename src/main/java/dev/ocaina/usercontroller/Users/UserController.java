@@ -4,20 +4,13 @@ package dev.ocaina.usercontroller.Users;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api/ninja")
 public class UserController {
-
-    @GetMapping("/welcome")
-    public String boasvindas(){
-        return "Welcome to Users Controller";
-    }
 
     // Adicionar user (create)
     @PostMapping("/create")
     public String post(){
         return "Cria um novo User";
-
-
     }
 
     // mostrar user por id (read)
