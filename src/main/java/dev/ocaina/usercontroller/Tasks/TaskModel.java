@@ -24,6 +24,9 @@ public class TaskModel {
     @Column(name = "difficult")
     private int difficult;
 
+    @Column(name = "rank")
+    private String rank;
+
     // Uma Task para varias pessoas
     @OneToMany(mappedBy = "tasks")
     List<UserModel> users;
