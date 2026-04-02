@@ -3,35 +3,34 @@ package dev.ocaina.usercontroller.Users;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/ninja")
 public class UserController {
+    private final UserService userService;
+    public UserController(UserService userService) {this.userService = userService;}
 
-    // Adicionar user (create)
     @PostMapping("/create")
     public String post(){
         return "Cria um novo User";
     }
 
-    // mostrar user por id (read)
     @GetMapping("/all")
-    public String all(){
-        return "All Users";
+    public List<UserModel> getAll(){
+        return userService.getAll();
     }
 
-    // mostrar todos usuarios (read)
     @GetMapping("/id")
     public String id(){
-        return "id";
+        return "retorno user por id";
     }
 
-    // alterar dados de usuario (update)
     @PutMapping("/update")
     public String update(){
         return "Update User";
     }
 
-    // deletar usuarios (delete)
     @DeleteMapping("/delete")
     public String delete(){
         return "Delete User";
