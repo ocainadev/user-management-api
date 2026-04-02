@@ -1,5 +1,6 @@
 package dev.ocaina.usercontroller.Tasks;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.ocaina.usercontroller.Users.UserModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -29,6 +30,7 @@ public class TaskModel {
 
     // Uma Task para varias pessoas
     @OneToMany(mappedBy = "tasks")
+    @JsonIgnore
     List<UserModel> users;
 
 }
