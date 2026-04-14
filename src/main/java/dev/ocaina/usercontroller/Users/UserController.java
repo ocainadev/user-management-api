@@ -26,9 +26,9 @@ public class UserController {
         return userService.createUser(model);
     }
 
-    @PutMapping("/update")
-    public String update(){
-        return "Update User";
+    @PutMapping("/update/{id}")
+    public UserModel update(@PathVariable Long id, @RequestBody UserModel model){
+        return userService.update(id,model);
     }
 
     @DeleteMapping("/delete/{id}")
