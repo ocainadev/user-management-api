@@ -9,7 +9,7 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -25,5 +25,8 @@ public class UserService {
 
     public UserModel createUser(UserModel model) {
         return userRepository.save(model);
+    }
+    public void deleteUser(Long id){
+        userRepository.deleteById(id);
     }
 }
