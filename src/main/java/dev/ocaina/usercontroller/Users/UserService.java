@@ -9,9 +9,12 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    private final UserRepository userRepository;
-    public UserService(UserRepository userRepository) {
+    private UserRepository userRepository;
+    private UserMapper userMapper;
+
+    public UserService(UserRepository userRepository, UserMapper userMapper) {
         this.userRepository = userRepository;
+        this.userMapper = userMapper;
     }
 
     public List<UserModel> getAll() {
@@ -23,8 +26,10 @@ public class UserService {
         return user.orElse(null);
     }
 
-    public UserModel createUser(UserModel model) {
-        return userRepository.save(model);
+    public UserDTO createUser(UserDTO dto) {
+        UserModel model = userMapper.map(dto);
+        userRepository.save(model);
+        return userMapper.map(model);
     }
     public void deleteUser(Long id){
         userRepository.deleteById(id);
@@ -34,8 +39,7 @@ public class UserService {
         if (userRepository.existsById(id)) {
             model.setId(id);
             return userRepository.save(model);
-        } else{
+        } else
             return null;
-        }
     }
 }
