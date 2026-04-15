@@ -23,7 +23,7 @@ public class TaskModel {
     private String name;
 
     @Column(name = "difficult")
-    private int difficult;
+    private String difficult;
 
     @Column(name = "rank")
     private String rank;
