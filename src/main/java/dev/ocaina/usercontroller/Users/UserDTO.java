@@ -13,7 +13,6 @@ public class UserDTO {
     private String name;
     private String email;
     private int age;
-    private TaskModel tasks;
     private String rank;
-
+    private TaskModel tasks;
 }

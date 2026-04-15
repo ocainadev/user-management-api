@@ -12,27 +12,27 @@ public class UserController {
     public UserController(UserService userService) {this.userService = userService;}
 
     @GetMapping("/all")
-    public List<UserModel> getAll(){
+    public List<UserDTO> getAll(){
         return userService.getAll();
     }
 
     @GetMapping("/{id}")
-    public UserModel getById(@PathVariable Long id){
+    public UserDTO getById(@PathVariable Long id){
         return userService.getById(id);
     }
 
     @PostMapping("/create")
     public UserDTO post(@RequestBody UserDTO model){
-        return userService.createUser(model);
+        return userService.create(model);
     }
 
     @PutMapping("/update/{id}")
-    public UserModel update(@PathVariable Long id, @RequestBody UserModel model){
+    public UserDTO update(@PathVariable Long id, @RequestBody UserDTO model){
         return userService.update(id,model);
     }
 
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable Long id){
-        userService.deleteUser(id);
+        userService.delete(id);
     }
 }
