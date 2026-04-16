@@ -5,37 +5,48 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
 
-    private final UserRepository userRepository;
-    public UserService(UserRepository userRepository) {
+    private UserRepository userRepository;
+    private UserMapper userMapper;
+
+    public UserService(UserRepository userRepository, UserMapper userMapper) {
         this.userRepository = userRepository;
+        this.userMapper = userMapper;
     }
 
-    public List<UserModel> getAll() {
-        return userRepository.findAll();
+    public List<UserDTO> getAll() {
+        List<UserModel> users = userRepository.findAll();
+        return users.stream()
+                .map(userMapper::map)
+                .collect(Collectors.toList());
     }
 
-    public UserModel getById(Long id){
+    public UserDTO getById(Long id){
         Optional<UserModel> user = userRepository.findById(id);
-        return user.orElse(null);
+        return user.map(userMapper::map).orElse(null);
     }
 
-    public UserModel createUser(UserModel model) {
-        return userRepository.save(model);
+    public UserDTO create(UserDTO dto) {
+        UserModel model = userMapper.map(dto);
+        userRepository.save(model);
+        return userMapper.map(model);
     }
-    public void deleteUser(Long id){
+    public void delete(Long id){
         userRepository.deleteById(id);
     }
 
-    public UserModel update(Long id, UserModel model) {
-        if (userRepository.existsById(id)) {
-            model.setId(id);
-            return userRepository.save(model);
-        } else{
-            return null;
+    public UserDTO update(Long id, UserDTO dto) {
+        Optional<UserModel> model = userRepository.findById(id);
+        if(model.isPresent()) {
+            UserModel userModel = userMapper.map(dto);
+            userModel.setId(id);
+            userRepository.save(userModel);
+            return userMapper.map(userModel);
         }
+        return null;
     }
 }

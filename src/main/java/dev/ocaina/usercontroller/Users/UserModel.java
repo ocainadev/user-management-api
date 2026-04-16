@@ -3,8 +3,6 @@ import dev.ocaina.usercontroller.Tasks.TaskModel;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
 @Entity
 @Table(name = "tb_users")
 @NoArgsConstructor
@@ -24,7 +22,9 @@ public class UserModel {
     @Column(name = "age")
     private int age;
 
-    // varias pessoas uma task
+    @Column(name = "rank")
+    private String rank;
+
     @ManyToOne
     @JoinColumn(name= "tasks_id")
     private TaskModel tasks;
